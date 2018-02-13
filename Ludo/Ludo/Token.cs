@@ -11,32 +11,35 @@ namespace Ludo
         Red,
         Yellow,
         Blue,
-        Green
+        Green,
+        White
     };
 
     public class Token : ITokenPosition
     {
+        public string id;
         private int _x;
         private int _y;
-        public Color _color;
+        public Color color;
 
-        public Token(int x, int y, Color color)
+
+        public Token(int x, int y, Color clr)
         {
-            _x = x;
-            _y = y;
-            _color = color;
+            this._x = x;
+            this._y = y;
+            this.color = clr;
         }
 
         public int x
         {
             get
             {
-                return _x;
+                return this._x;
             }
 
             set
             {
-                _x = value;
+                this._x = value;
             }
         }
 
@@ -44,12 +47,12 @@ namespace Ludo
         {
             get
             {
-                return _y;
+                return this._y;
             }
 
             set
             {
-                _y = value;
+                this._y = value;
             }
         }
     }

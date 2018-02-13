@@ -8,5 +8,6 @@ namespace Ludo
 {
     class Player
     {
+
     }
 }

@@ -19,7 +19,7 @@ namespace Ludo
         }
         public string RollDice()
         {
-            diceValue = random.Next(1, this.sides).ToString();
+            diceValue = random.Next(1, (this.sides+1)).ToString();
 
             if (diceValue == "3")
             {

@@ -10,7 +10,13 @@ namespace Ludo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hello world");
+            while (true)
+            {
+                Console.WriteLine("hello world");
+                Dice dice = new Dice(6);
+                Console.WriteLine(dice.RollDice());
+                Console.ReadKey();
+            }
         }
     }
 }

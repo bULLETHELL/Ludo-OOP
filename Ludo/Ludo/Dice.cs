@@ -17,17 +17,19 @@ namespace Ludo
         {
             this.sides = diceSides;
         }
-        public string RollDice()
+
+        //the function that rolls the dice
+        public string RollDice()    
         {
-            diceValue = random.Next(1, (this.sides+1)).ToString();
+            diceValue = random.Next(1, (this.sides+1)).ToString();      
 
             if (diceValue == "3")
             {
-                return "star";
+                return "Star";
             }
             else if (diceValue == "5")
             {
-                return "globus";
+                return "Globe";
             }
             else
             {

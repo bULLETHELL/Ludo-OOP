@@ -15,6 +15,7 @@ namespace Ludo
         private int _y;
         public SquareType SqType;
         public Color SqClr;
+
         public Square(SquareType Type, int id, Color clr)
         {
             this.SqType = Type;

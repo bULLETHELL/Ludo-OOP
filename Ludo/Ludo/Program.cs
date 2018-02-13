@@ -14,6 +14,7 @@ namespace Ludo
             {
                 Square square = new Square(SquareType.Normal, 1, Color.White);
                 Console.WriteLine(square.Info());
+                square.SqClr = Color.Red;
                 Console.ReadKey();
             }
         }

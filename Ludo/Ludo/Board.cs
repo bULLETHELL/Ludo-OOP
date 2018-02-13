@@ -10,5 +10,13 @@ namespace Ludo
 
     class Board
     {
+        private 
+        public Board()
+        {
+            for(int i = 1; i < 52; i++)
+            {
+
+            }
+        }
     }
 }

@@ -11,7 +11,10 @@ namespace Ludo
     class Board
     {
         private List<Square> BoardList = new List<Square>();
+        private List<Square> BoardListHome = new List<Square>();
+
         private string finalString;
+
         public Board()
         {
             int[] GlobeSquares = new int[] {1, 9, 14, 22, 27, 35, 40, 48};
@@ -32,6 +35,26 @@ namespace Ludo
                     BoardList.Add(new Square(SquareType.Normal, i, Color.White));
                 }
             }
+            for(int i = 1; i <= 20; i++)
+            {
+                if(i <= 1)
+                {
+                    BoardListHome.Add(new Square(SquareType.Normal, i, Color.White));
+                }
+                else if (i <= 10)
+                {
+
+                }
+                else if (i <= 15)
+                {
+
+                }
+                else if (i <= 20)
+                {
+
+                }
+            }
+            
         }
         public string Info()
         {

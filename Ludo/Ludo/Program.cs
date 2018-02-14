@@ -12,9 +12,8 @@ namespace Ludo
         {
             while (true)
             {
-                Square square = new Square(SquareType.Normal, 1, Color.White);
-                Console.WriteLine(square.Info());
-                square.SqClr = Color.Red;
+                Board board = new Board();
+                Console.WriteLine(board.Info());
                 Console.ReadKey();
             }
         }

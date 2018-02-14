@@ -24,7 +24,7 @@ namespace Ludo
         }
         public string Info()
         {
-            return (String.Format("Square colour: {0}\nSquare ID: {1}\nSquare Type: {2}", this.SqClr, this.SqId, this.SqType));
+            return (String.Format("Square colour: {0}\nSquare ID:     {1}\nSquare Type:   {2} \n \n", this.SqClr, this.SqId, this.SqType));
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ludo
 {
-    public enum SquareType { Normal, Star, Globe, Home, FinishRoad, safe};
+    public enum SquareType { Normal, Star, Globe, Finish, FinishRoad, safe};
 
     public class Square// : ITokenPosition
     {

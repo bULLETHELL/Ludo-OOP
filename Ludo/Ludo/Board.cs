@@ -62,6 +62,7 @@ namespace Ludo
                     BoardListBlue.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue));
                 }
             }
+            BoardList.Add(new Square(SquareType.Finish, 73, Color.White));
         }
         public string Info()
         {

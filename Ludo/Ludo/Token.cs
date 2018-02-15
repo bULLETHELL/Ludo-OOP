@@ -12,7 +12,7 @@ namespace Ludo
         Yellow,
         Blue,
         Green,
-        White
+        White,
     };
 
     public enum TokenState //    Enumeration for the State of the Token

@@ -9,14 +9,14 @@ namespace Ludo
     class Game
     {
         enum GameState { NotStarted, InProgress, Finished};
-        private int amountOfPlayers;
         public Game(int players)
         {
-            
+            Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
         }
         private void AmountOfPlayers()
         {
-
+            Console.Clear();
+            Console.WriteLine("Please enter the amount of players");
         }
         private void PlayerNames()
         {

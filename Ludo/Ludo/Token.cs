@@ -15,7 +15,7 @@ namespace Ludo
         White
     };
 
-    public enum State //    Enumeration for the State of the Token
+    public enum TokenState //    Enumeration for the State of the Token
     {
         Home,
         Finished,
@@ -27,13 +27,15 @@ namespace Ludo
         private string _id; //  private string _id
         private int _position; //   private integer _position
         public Color color; //  public Color color
+        public TokenState state;
 
 
-        public Token(string id, int pos, Color clr) //  Constructor
+        public Token(string id, int pos, Color clr, TokenState tState) //  Constructor
         {
             this._id = id;
             this._position = pos;
             this.color = clr;
+            this.state = tState;
         }
 
         public int position //  Getter and setter for position from IPosition
@@ -49,9 +51,20 @@ namespace Ludo
             }
         }
 
-        public void Move(int squares) //    Function Move from IMove
+        public void Move(int squares)   // Function Move from IMove
         {
-            position += squares;
+            switch (this.state)
+            {
+                case TokenState.Home:
+                    this.state = TokenState.InPlay;
+                    break;
+                case TokenState.InPlay:
+                    position += squares;
+                    break;
+                case TokenState.Finished:
+                    break;
+                     
+            }
         }
     }
 }

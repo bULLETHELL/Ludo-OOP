@@ -13,10 +13,5 @@ namespace Ludo
             get;
             set;
         }
-        int y
-        {
-            get;
-            set;
-        }
     }
 }

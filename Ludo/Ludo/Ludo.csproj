@@ -48,6 +48,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="IMove.cs" />
     <Compile Include="IPlayer.cs" />
+    <Compile Include="IPosition.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

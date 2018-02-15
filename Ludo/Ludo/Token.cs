@@ -14,51 +14,44 @@ namespace Ludo
         Green,
         White
     };
+
     public enum State
     {
         Home,
         Finished,
         InPlay
     };
-    public class Token : ITokenPosition
+
+    public class Token : IMove, IPosition
     {
-        public string id;
-        private int _x;
-        private int _y;
+        private string _id;
+        private int _position;
         public Color color;
 
 
-        public Token(int x, int y, Color clr)
+        public Token(string id, int pos, Color clr)
         {
-            this._x = x;
-            this._y = y;
+            this._id = id;
+            this._position = pos;
             this.color = clr;
         }
 
-        public int x
+        public int position
         {
             get
             {
-                return this._x;
+                return this._position;
             }
 
             set
             {
-                this._x = value;
+                this._position = value;
             }
         }
 
-        public int y
+        public void Move(int squares)
         {
-            get
-            {
-                return this._y;
-            }
-
-            set
-            {
-                this._y = value;
-            }
+            position += squares;
         }
     }
 }

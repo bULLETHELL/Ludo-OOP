@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ludo
 {
-    public enum Color
+    public enum Color //    Enumeration for the Color of the Token
     {
         Red,
         Yellow,
@@ -15,28 +15,28 @@ namespace Ludo
         White
     };
 
-    public enum State
+    public enum State //    Enumeration for the State of the Token
     {
         Home,
         Finished,
         InPlay
     };
 
-    public class Token : IMove, IPosition
+    public class Token : IMove, IPosition //    Class is public and inherits from the interfaces IMove, IPosition
     {
-        private string _id;
-        private int _position;
-        public Color color;
+        private string _id; //  private string _id
+        private int _position; //   private integer _position
+        public Color color; //  public Color color
 
 
-        public Token(string id, int pos, Color clr)
+        public Token(string id, int pos, Color clr) //  Constructor
         {
             this._id = id;
             this._position = pos;
             this.color = clr;
         }
 
-        public int position
+        public int position //  Getter and setter for position from IPosition
         {
             get
             {
@@ -49,7 +49,7 @@ namespace Ludo
             }
         }
 
-        public void Move(int squares)
+        public void Move(int squares) //    Function Move from IMove
         {
             position += squares;
         }

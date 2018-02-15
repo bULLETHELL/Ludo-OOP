@@ -20,7 +20,7 @@ namespace Ludo
             set;
         }
 
-        Token[] tokens
+        List<Token> tokens
         {
             get;
             set;

@@ -20,7 +20,7 @@ namespace Ludo
         Finished,
         InPlay
     };
-    public class Token : ITokenPosition
+    public class Token //: ITokenPosition
     {
         public string id;
         private int _x;

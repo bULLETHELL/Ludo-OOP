@@ -21,10 +21,9 @@ namespace Ludo
 
         public Board()
         {
-            
-            
+            Draw();            
         }
-        public void Draw()
+        private void Draw()
         {
             int[] GlobeSquares = new int[] { 1, 9, 14, 22, 27, 35, 40, 48 };
             int[] StarSquares = new int[] { 6, 12, 19, 25, 32, 38, 45, 51 };

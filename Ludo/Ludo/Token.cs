@@ -14,7 +14,12 @@ namespace Ludo
         Green,
         White
     };
-
+    public enum State
+    {
+        Home,
+        Finished,
+        InPlay
+    };
     public class Token : ITokenPosition
     {
         public string id;

@@ -44,19 +44,19 @@ namespace Ludo
             {
                 if (i <= 1)
                 {
-                    BoardListHome.Add(new Square(SquareType.Normal, (i+52), Color.Yellow));
+                    BoardListHome.Add(new Square(SquareType.FinishRoad, (i+52), Color.Yellow));
                 }
                 else if (i <= 10)
                 {
-                    BoardListHome.Add(new Square(SquareType.Normal, (i + 52), Color.Red));
+                    BoardListHome.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Red));
                 }
                 else if (i <= 15)
                 {
-                    BoardListHome.Add(new Square(SquareType.Normal, (i + 52), Color.Green));
+                    BoardListHome.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Green));
                 }
                 else if (i <= 20)
                 {
-                    BoardListHome.Add(new Square(SquareType.Normal, (i + 52), Color.Blue));
+                    BoardListHome.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue));
                 }
             }
         }

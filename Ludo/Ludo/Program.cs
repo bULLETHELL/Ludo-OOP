@@ -13,7 +13,6 @@ namespace Ludo
             while (true)
             {
                 Board board = new Board();
-                board.Draw();
                 Console.WriteLine(board.Info());
                 Console.ReadKey();
             }

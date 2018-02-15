@@ -11,7 +11,11 @@ namespace Ludo
     class Board
     {
         private List<Square> BoardList = new List<Square>();
-        private List<Square> BoardListHome = new List<Square>();
+        private List<Square> BoardListRed = new List<Square>();
+        private List<Square> BoardListGreen = new List<Square>();
+        private List<Square> BoardListBlue = new List<Square>();
+        private List<Square> BoardListYellow = new List<Square>();
+
 
         private string finalString;
 
@@ -44,19 +48,19 @@ namespace Ludo
             {
                 if (i <= 1)
                 {
-                    BoardListHome.Add(new Square(SquareType.FinishRoad, (i+52), Color.Yellow));
+                    BoardListYellow.Add(new Square(SquareType.FinishRoad, (i+52), Color.Yellow));
                 }
                 else if (i <= 10)
                 {
-                    BoardListHome.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Red));
+                    BoardListRed.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Red));
                 }
                 else if (i <= 15)
                 {
-                    BoardListHome.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Green));
+                    BoardListGreen.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Green));
                 }
                 else if (i <= 20)
                 {
-                    BoardListHome.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue));
+                    BoardListBlue.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue));
                 }
             }
         }
@@ -66,9 +70,22 @@ namespace Ludo
             {
                 finalString += square.Info();
             }
-            foreach(Square HomeSquare in BoardListHome)
+            foreach(Square YellowSquare in BoardListYellow)
             {
-                finalString += HomeSquare.Info();
+                finalString += YellowSquare.Info();
+            }
+
+            foreach(Square RedSquare in BoardListRed)
+            {
+                finalString += RedSquare.Info();
+            }
+            foreach(Square GreenSquare in BoardListGreen)
+            {
+                finalString += GreenSquare.Info();
+            }
+            foreach(Square BlueSquare in BoardListBlue)
+            {
+                finalString += BlueSquare.Info();
             }
             return finalString;
         }

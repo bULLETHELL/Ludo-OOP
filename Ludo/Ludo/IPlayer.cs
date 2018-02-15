@@ -26,7 +26,7 @@ namespace Ludo
             set;
         }
 
-        bool winner
+        bool isWinner
         {
             get;
             set;

@@ -6,8 +6,43 @@ using System.Threading.Tasks;
 
 namespace Ludo
 {
-    class Player
+    class Player : IPlayer
     {
+        private Color pColor;
+        private string pName;
+        private Token[] pTokens;
+        private bool pIsWinner;
 
+        public Player(Color clr, string name, Token[] tokens)
+        {
+            this.pColor = clr;
+            this.pName = name;
+            this.pTokens = tokens;
+            this.pIsWinner = false;
+        }
+
+        public Color color
+        {
+            get { return this.pColor; }
+            set { this.pColor = value; }
+        }
+
+        public string name
+        {
+            get { return this.pName; }
+            set { this.pName = value; }
+        }
+
+        public Token[] tokens
+        {
+            get { return this.pTokens; }
+            set { this.pTokens = value; }
+        }
+
+        public bool isWinner
+        {
+            get { return this.pIsWinner; }
+            set { this.pIsWinner = value; }
+        }
     }
 }

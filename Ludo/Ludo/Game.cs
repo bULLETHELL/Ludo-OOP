@@ -12,9 +12,20 @@ namespace Ludo
         private int amountOfPlayers;
         public Game(int players)
         {
-            this.amountOfPlayers = players;
-            Start(this.amountOfPlayers);
-        } 
+            
+        }
+        private void AmountOfPlayers()
+        {
+
+        }
+        private void PlayerNames()
+        {
+
+        }
+        private void TurnCounter()
+        {
+
+        }
         private void Start(int Players)
         {
 

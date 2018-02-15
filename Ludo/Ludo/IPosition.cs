@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ludo
 {
-    interface ITokenPosition
+    interface IPosition
     {
-        int x
+        int position
         {
             get;
             set;

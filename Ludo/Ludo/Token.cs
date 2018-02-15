@@ -24,13 +24,13 @@ namespace Ludo
 
     public class Token : IMove, IPosition //    Class is public and inherits from the interfaces IMove, IPosition
     {
-        private string _id; //  private string _id
+        private int _id; //  private string _id
         private int _position; //   private integer _position
         public Color color; //  public Color color
         public TokenState state;
 
 
-        public Token(string id, int pos, Color clr, TokenState tState) //  Constructor
+        public Token(int id, int pos, Color clr, TokenState tState) //  Constructor
         {
             this._id = id;
             this._position = pos;

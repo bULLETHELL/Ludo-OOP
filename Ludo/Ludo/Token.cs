@@ -38,6 +38,7 @@ namespace Ludo
             this.state = tState;
         }
 
+
         public int position //  Getter and setter for position from IPosition
         {
             get

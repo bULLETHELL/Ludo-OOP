@@ -10,13 +10,18 @@ namespace Ludo
     {
         enum GameState { NotStarted, InProgress, Finished};
         List<Player> players1 = new List<Player>();
+        Dice dice;
+
 
         public Game()
         {
             Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
             players1 = MakePlayers(AmountOfPlayers());
-            Console.WriteLine(players1[0].color);
-            Console.ReadKey();
+            Board board = new Board();
+            dice = new Dice(6);
+            Turn();
+            Console.WriteLine(board.Info());
+            Console.Read();
         }
         private int AmountOfPlayers()
         {
@@ -55,27 +60,32 @@ namespace Ludo
             return (players);
         }
 
-        /*private string PlayerNames(int amountOfPlayers)
-        {
-            string playerName = "";
-            for (int i = 0; i < amountOfPlayers; i++)
-            {
-                Console.WriteLine(string.Format("Please enter the name of player {0}", i + 1));
-                playerName = Console.ReadLine();
-            }
-            return playerName;
-        }*/
+        public int TurnCounter;
 
-        private void TurnCounter()
-        {
-
-        }
 
         private void Start(int Players)
         {
 
         }
-        
+
+        private void Turn()
+        {
+            string diceResult;
+            Player currentPlayer = players1[TurnCounter % players1.Count];
+            while (true)
+            {
+                Console.WriteLine("Press 'e' to throw the dice");
+                char chrInput = Console.ReadKey(true).KeyChar;
+                if (chrInput == 'e')
+                {
+                    diceResult = dice.Roll();
+                    Console.WriteLine(string.Format("You have the following tokens: \n {0} \n {1} \n {2} \n {3}",currentPlayer.tokens[0], currentPlayer.tokens[1], currentPlayer.tokens[2], currentPlayer.tokens[3]));
+                }
+
+            }
+            TurnCounter++;
+        }
+
         private void End()
         {
 

@@ -43,11 +43,11 @@ namespace Ludo
                 Console.WriteLine(string.Format("Please enter the desired colour for player {0}", i+1));
                 try
                 {
-                    playerColor = (Color)Enum.Parse(typeof(Color), Console.ReadLine());
+                    playerColor = (Color)Enum.TryParse(typeof(Color), Console.ReadLine());
                 }
                 catch(System.ArgumentException)
                 {
-
+                    
                 }
                 
                 tokens.Add(new Token(i + 1, 0, playerColor, TokenState.Home));

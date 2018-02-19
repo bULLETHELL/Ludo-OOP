@@ -67,6 +67,18 @@ namespace Ludo
             }
             return playerName;
         }
+
+        private Color PlayerColors(int amountOfPlayers)
+        {
+            Color playerColor = Color.White;
+            for (int i = 0; i < amountOfPlayers; i++)
+            {
+                playerColor = (Color)Enum.Parse(typeof(Color), Console.ReadLine());
+            }
+            return playerColor;
+        }
+
+
         private void TurnCounter()
         {
 

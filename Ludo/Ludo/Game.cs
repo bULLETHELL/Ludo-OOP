@@ -20,6 +20,7 @@ namespace Ludo
             Board board = new Board();
             dice = new Dice(6);
             Turn();
+            Console.ReadKey();
             Console.WriteLine(board.Info());
             Console.Read();
         }
@@ -44,7 +45,6 @@ namespace Ludo
         private List<Player> MakePlayers(int amountOfPlayers)
         {
             List<Player> players = new List<Player>();
-            List<Token> tokens = new List<Token>();
             Color playerColor;
             for (int i = 0; i < amountOfPlayers; i++)
             {
@@ -53,13 +53,10 @@ namespace Ludo
                 {
                     Console.WriteLine("Entry needs to be either Red, Green, Blue or Yellow, try again");
                 }
-                for(int j = 0; j<4; j++)
-                {
-                    tokens.Add(new Token(j, 0, playerColor, TokenState.Home));
-                }
-                players.Add(new Player(playerColor, tokens));
+                players.Add(new Player(playerColor));
             }
-            return (players);
+            Console.Clear();
+            return (players);            
         }
 
         public int TurnCounter;
@@ -72,19 +69,22 @@ namespace Ludo
 
         private void Turn()
         {
-            string diceResult;
+            string diceResult = "";
             Player currentPlayer = players1[TurnCounter % players1.Count];
-            while (true)
+            Console.WriteLine("you have the following tokens:");
+            for (int i = 0; i < 4; i++)
             {
-                Console.WriteLine("Press 'e' to throw the dice");
-                char chrInput = Console.ReadKey(true).KeyChar;
-                if (chrInput == 'e')
-                {
-                    diceResult = dice.Roll();
-                    Console.WriteLine(string.Format("You have the following tokens: \n {0} \n {1} \n {2} \n {3}",currentPlayer.tokens[0], currentPlayer.tokens[1], currentPlayer.tokens[2], currentPlayer.tokens[3]));
-                }
-
+                Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", currentPlayer.tokens[i].id + 1, currentPlayer.tokens[i].position, currentPlayer.tokens[i].state));
             }
+            Console.WriteLine("Press 'e' to throw the dice");
+            char chrInput = Console.ReadKey(true).KeyChar;
+            if (chrInput == 'e')
+            {
+                diceResult = dice.Roll();
+            }
+            Console.WriteLine(string.Format("you rolled a '{0}' ",diceResult));
+            Console.WriteLine("Which token would you like to move(use the 1, 2, 3 or 4 key)");
+            //Console.ReadKey(true).KeyChar;
             TurnCounter++;
         }
 

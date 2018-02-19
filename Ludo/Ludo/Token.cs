@@ -52,6 +52,14 @@ namespace Ludo
             }
         }
 
+        public int id
+        {
+            get
+            {
+                return this._id;
+            }
+        }
+
         public void Move(int squares)   // Function Move from IMove
         {
             switch (this.state)

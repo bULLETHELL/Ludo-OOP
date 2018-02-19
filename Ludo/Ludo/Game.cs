@@ -24,7 +24,7 @@ namespace Ludo
             {
                 Console.Clear();
                 Console.WriteLine(string.Format("starting game with {0} players", entry));
-                return (int)Char.GetNumericValue(entry); ;
+                return (int)Char.GetNumericValue(entry); 
             }
             else
             {
@@ -32,9 +32,8 @@ namespace Ludo
             }
             return 0;
         }
-        private List<Player> MakePlayers(int amountOfPlayers)
+        private List<Player> MakePlayers(int amountOfPlayers, string playerNames)
         {
-            string playerName;
             Color playerColor;
             List<Player> players = new List<Player>();
             List<Token> tokens = new List<Token>();

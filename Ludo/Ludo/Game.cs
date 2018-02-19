@@ -40,8 +40,6 @@ namespace Ludo
             List<Token> tokens = new List<Token>();
             for (int i = 0; i < amountOfPlayers; i++)
             {
-                Console.WriteLine(string.Format("Please enter the name of player {0}", i+1));
-                playerName = Console.ReadLine();
                 Console.WriteLine(string.Format("Please enter the desired colour for player {0}", i+1));
                 try
                 {
@@ -53,13 +51,19 @@ namespace Ludo
                 }
                 
                 tokens.Add(new Token(i + 1, 0, playerColor, TokenState.Home));
-                players.Add(new Player(playerColor, playerName, tokens));
+                players.Add(new Player(playerColor, PlayerNames(amountOfPlayers), tokens));
             }
             return (players);
         }
-        private void PlayerNames()
+        private string PlayerNames(int amountOfPlayers)
         {
-
+            string playerName;
+            for (int i = 0; i < amountOfPlayers; i++)
+            {
+                Console.WriteLine(string.Format("Please enter the name of player {0}", i + 1));
+                return playerName = Console.ReadLine();
+            }
+            return "";
         }
         private void TurnCounter()
         {

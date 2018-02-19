@@ -9,6 +9,7 @@ namespace Ludo
     class Game
     {
         enum GameState { NotStarted, InProgress, Finished};
+        int amountOfPlayers;
         public Game()
         {
             Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
@@ -17,14 +18,13 @@ namespace Ludo
         private int AmountOfPlayers()
         {
             char entry;
-            //Console.Clear();
             Console.WriteLine("Please enter the amount of players with one key press");
             entry = Console.ReadKey().KeyChar;
             if(entry == '2'  ||entry == '3' || entry == '4')
             {
                 Console.Clear();
                 Console.WriteLine(string.Format("starting game with {0} players", entry));
-                return (int)entry;
+                return (int)Char.GetNumericValue(entry); ;
             }
             else
             {
@@ -67,18 +67,6 @@ namespace Ludo
             }
             return playerName;
         }
-
-        private Color PlayerColors(int amountOfPlayers)
-        {
-            Color playerColor = Color.White;
-            for (int i = 0; i < amountOfPlayers; i++)
-            {
-                playerColor = (Color)Enum.Parse(typeof(Color), Console.ReadLine());
-            }
-            return playerColor;
-        }
-
-
         private void TurnCounter()
         {
 

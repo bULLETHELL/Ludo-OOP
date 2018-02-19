@@ -9,10 +9,14 @@ namespace Ludo
     class Game
     {
         enum GameState { NotStarted, InProgress, Finished};
+        List<Player> players1 = new List<Player>();
+
         public Game()
         {
             Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
-            MakePlayers(AmountOfPlayers());
+            players1 = MakePlayers(AmountOfPlayers());
+            Console.WriteLine(players1[0].color);
+            Console.ReadKey();
         }
         private int AmountOfPlayers()
         {
@@ -36,15 +40,22 @@ namespace Ludo
         {
             List<Player> players = new List<Player>();
             List<Token> tokens = new List<Token>();
+            Color playerColor;
             for (int i = 0; i < amountOfPlayers; i++)
             {
-                    tokens.Add(new Token(i + 1, 0, (PlayerColors(amountOfPlayers)), TokenState.Home));
-                    players.Add(new Player(PlayerColors(amountOfPlayers), PlayerNames(amountOfPlayers), tokens));
+                Console.WriteLine(string.Format("Please enter the desired colour for player {0}", i+1));
+                while (!Enum.TryParse(Console.ReadLine(), out playerColor))
+                {
+                    Console.WriteLine("Entry needs to be either Red, Green, Blue or Yellow, try again");
+                }
 
+                tokens.Add(new Token(i + 1, 0, playerColor, TokenState.Home));
+                players.Add(new Player(playerColor, tokens));
             }
             return (players);
         }
-        private string PlayerNames(int amountOfPlayers)
+
+        /*private string PlayerNames(int amountOfPlayers)
         {
             string playerName = "";
             for (int i = 0; i < amountOfPlayers; i++)
@@ -53,21 +64,7 @@ namespace Ludo
                 playerName = Console.ReadLine();
             }
             return playerName;
-        }
-
-        private Color PlayerColors(int amountOfPlayers)
-        {
-            Color playerColor = Color.White;
-            for (int i = 0; i < amountOfPlayers; i++)
-            {
-                while (!Enum.TryParse(Console.ReadLine(), out playerColor))
-                {
-                    Console.WriteLine(string.Format("Please enter the desired colour for player {0}", i + 1));
-                }
-            }
-            return playerColor;
-        }
-
+        }*/
 
         private void TurnCounter()
         {
@@ -78,6 +75,7 @@ namespace Ludo
         {
 
         }
+        
         private void End()
         {
 

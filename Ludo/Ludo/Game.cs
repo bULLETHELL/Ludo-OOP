@@ -53,8 +53,10 @@ namespace Ludo
                 {
                     Console.WriteLine("Entry needs to be either Red, Green, Blue or Yellow, try again");
                 }
-
-                tokens.Add(new Token(i + 1, 0, playerColor, TokenState.Home));
+                for(int j = 0; j<4; j++)
+                {
+                    tokens.Add(new Token(j, 0, playerColor, TokenState.Home));
+                }
                 players.Add(new Player(playerColor, tokens));
             }
             return (players);

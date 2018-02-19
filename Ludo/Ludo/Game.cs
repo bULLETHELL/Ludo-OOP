@@ -57,13 +57,13 @@ namespace Ludo
         }
         private string PlayerNames(int amountOfPlayers)
         {
-            string playerName;
+            string playerName = "";
             for (int i = 0; i < amountOfPlayers; i++)
             {
                 Console.WriteLine(string.Format("Please enter the name of player {0}", i + 1));
-                return playerName = Console.ReadLine();
+                playerName = Console.ReadLine();
             }
-            return "";
+            return playerName;
         }
         private void TurnCounter()
         {

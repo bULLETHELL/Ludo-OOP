@@ -9,7 +9,6 @@ namespace Ludo
     class Player : IPlayer
     {
         private Color pColor;
-        private string pName;
         private List<Token> pTokens;
         private bool pIsWinner;
 

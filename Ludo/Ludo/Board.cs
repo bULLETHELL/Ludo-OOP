@@ -32,37 +32,37 @@ namespace Ludo
             {
                 if (GlobeSquares.Contains(i))
                 {
-                    BoardList.Add(new Square(SquareType.Globe, i, Color.White));
+                    BoardList.Add(new Square(SquareType.Globe, i, Color.White, SquareState.empty));
                 }
                 else if (StarSquares.Contains(i))
                 {
-                    BoardList.Add(new Square(SquareType.Star, i, Color.White));
+                    BoardList.Add(new Square(SquareType.Star, i, Color.White, SquareState.empty));
                 }
                 else
                 {
-                    BoardList.Add(new Square(SquareType.Normal, i, Color.White));
+                    BoardList.Add(new Square(SquareType.Normal, i, Color.White, SquareState.empty));
                 }
             }
             for (int i = 1; i <= 20; i++)
             {
                 if (i <= 1)
                 {
-                    BoardListYellow.Add(new Square(SquareType.FinishRoad, (i+52), Color.Yellow));
+                    BoardListYellow.Add(new Square(SquareType.FinishRoad, (i+52), Color.Yellow, SquareState.empty));
                 }
                 else if (i <= 10)
                 {
-                    BoardListRed.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Red));
+                    BoardListRed.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Red, SquareState.empty));
                 }
                 else if (i <= 15)
                 {
-                    BoardListGreen.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Green));
+                    BoardListGreen.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Green, SquareState.empty));
                 }
                 else if (i <= 20)
                 {
-                    BoardListBlue.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue));
+                    BoardListBlue.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue, SquareState.empty));
                 }
             }
-            BoardList.Add(new Square(SquareType.Finish, 73, Color.White));
+            BoardList.Add(new Square(SquareType.Finish, 73, Color.White, SquareState.empty));
         }
         public string Info()
         {

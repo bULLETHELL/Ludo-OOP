@@ -10,11 +10,8 @@ namespace Ludo
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                Game game = new Game();
-                Console.ReadKey();
-            }
+            Game game = new Game();
+            Console.ReadKey();
         }
     }
 }

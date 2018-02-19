@@ -9,13 +9,16 @@ namespace Ludo
     class Player : IPlayer
     {
         private Color pColor;
-        private List<Token> pTokens;
+        private List<Token> pTokens = new List<Token>();
         private bool pIsWinner;
 
-        public Player(Color clr, List<Token> tokens)
+        public Player(Color clr)
         {
             this.pColor = clr;
-            this.pTokens = tokens;
+            for (int i = 0; i < 4; i++)
+            {
+                this.pTokens.Add(new Token(i, 0, this.pColor, TokenState.Home));
+            }
             this.pIsWinner = false;
         }
 

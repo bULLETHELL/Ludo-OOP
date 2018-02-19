@@ -13,10 +13,9 @@ namespace Ludo
         private List<Token> pTokens;
         private bool pIsWinner;
 
-        public Player(Color clr, string name, List<Token> tokens)
+        public Player(Color clr, List<Token> tokens)
         {
             this.pColor = clr;
-            this.pName = name;
             this.pTokens = tokens;
             this.pIsWinner = false;
         }
@@ -25,12 +24,6 @@ namespace Ludo
         {
             get { return this.pColor; }
             set { this.pColor = value; }
-        }
-
-        public string name
-        {
-            get { return this.pName; }
-            set { this.pName = value; }
         }
 
         public List<Token> tokens

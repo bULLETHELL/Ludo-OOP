@@ -8,12 +8,6 @@ namespace Ludo
 {
     interface IPlayer
     {
-        string name
-        {
-            get;
-            set;
-        }
-
         Color color
         {
             get;

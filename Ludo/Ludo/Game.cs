@@ -41,13 +41,15 @@ namespace Ludo
             for (int i = 0; i < amountOfPlayers; i++)
             {
                 Console.WriteLine(string.Format("Please enter the desired colour for player {0}", i+1));
+                tryStartPoint:;
                 try
                 {
-                    playerColor = (Color)Enum.TryParse(typeof(Color), Console.ReadLine());
+                    playerColor = (Color)Enum.Parse(typeof(Color), Console.ReadLine());
                 }
                 catch(System.ArgumentException)
                 {
-                    
+                    Console.WriteLine("The Entry was not a valid colour");
+                    goto tryStartPoint;
                 }
                 
                 tokens.Add(new Token(i + 1, 0, playerColor, TokenState.Home));

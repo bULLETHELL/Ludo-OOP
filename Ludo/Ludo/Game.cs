@@ -34,24 +34,13 @@ namespace Ludo
         }
         private List<Player> MakePlayers(int amountOfPlayers)
         {
-            string playerName;
-            Color playerColor;
             List<Player> players = new List<Player>();
             List<Token> tokens = new List<Token>();
             for (int i = 0; i < amountOfPlayers; i++)
             {
-                Console.WriteLine(string.Format("Please enter the desired colour for player {0}", i+1));
-                try
-                {
-                    playerColor = (Color)Enum.Parse(typeof(Color), Console.ReadLine());
-                }
-                catch(System.ArgumentException)
-                {
+                    tokens.Add(new Token(i + 1, 0, (PlayerColors(amountOfPlayers)), TokenState.Home));
+                    players.Add(new Player(PlayerColors(amountOfPlayers), PlayerNames(amountOfPlayers), tokens));
 
-                }
-                
-                tokens.Add(new Token(i + 1, 0, playerColor, TokenState.Home));
-                players.Add(new Player(playerColor, PlayerNames(amountOfPlayers), tokens));
             }
             return (players);
         }
@@ -71,7 +60,10 @@ namespace Ludo
             Color playerColor = Color.White;
             for (int i = 0; i < amountOfPlayers; i++)
             {
-                playerColor = (Color)Enum.Parse(typeof(Color), Console.ReadLine());
+                while (!Enum.TryParse(Console.ReadLine(), out playerColor))
+                {
+                    Console.WriteLine(string.Format("Please enter the desired colour for player {0}", i + 1));
+                }
             }
             return playerColor;
         }
@@ -81,6 +73,7 @@ namespace Ludo
         {
 
         }
+
         private void Start(int Players)
         {
 

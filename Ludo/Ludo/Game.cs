@@ -11,13 +11,13 @@ namespace Ludo
         enum GameState { NotStarted, InProgress, Finished};
         List<Player> players1 = new List<Player>();
         Dice dice;
-
+        public Board board;
 
         public Game()
         {
             Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
             players1 = MakePlayers(AmountOfPlayers());
-            Board board = new Board();
+            board = new Board();
             dice = new Dice(6);
             Turn();
             Console.ReadKey();

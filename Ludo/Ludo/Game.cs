@@ -82,12 +82,18 @@ namespace Ludo
             {
                 diceResult = dice.Roll();
             }
-            Console.WriteLine(string.Format("you rolled a '{0}' ",diceResult));
+            Console.WriteLine(string.Format("you rolled a '{0}' ", diceResult));
             Console.WriteLine("Which token would you like to move(use the 1, 2, 3 or 4 key)");
-            //Console.ReadKey(true).KeyChar;
-            TurnCounter++;
+            switch (Console.ReadKey(true).KeyChar)
+            {
+                case '1':
+                    currentPlayer.tokens[0].Move(diceResult);
+                    break;
+                case '2':
+                    currentPlayer.tokens[1].Move(diceResult);
+                    break;
+            }
         }
-
         private void End()
         {
 

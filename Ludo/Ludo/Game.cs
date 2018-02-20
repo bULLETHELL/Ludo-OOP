@@ -17,11 +17,10 @@ namespace Ludo
         {
             board = new Board();
             dice = new Dice(6);
+
             Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
             players1 = MakePlayers(AmountOfPlayers());
-            Turn();
-            Console.WriteLine(board.Info());
-          
+            Turn();          
             Console.ReadKey();
         }
         private int AmountOfPlayers()
@@ -74,11 +73,7 @@ namespace Ludo
 
             SetColour(currentPlayer);
             Console.WriteLine(string.Format("Current player is the {0} player", currentPlayer.color));
-            Console.WriteLine("you have the following tokens:");
-            for (int i = 0; i < 4; i++)
-            {
-                Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", currentPlayer.tokens[i].id + 1, currentPlayer.tokens[i].position, currentPlayer.tokens[i].state));
-            }
+            writeCurrentPosition(currentPlayer);
             Console.WriteLine("Press 'e' to throw the dice");
             char chrInput = Console.ReadKey(true).KeyChar;
             if (chrInput == 'e')
@@ -99,9 +94,10 @@ namespace Ludo
                     currentPlayer.tokens[2].Move(diceResult);
                     break;
                 case '4':
-                    currentPlayer.tokens[3].Move(diceResult);
+                    currentPlayer.tokens[3].Move(diceResult,);
                     break;
             }
+            writeCurrentPosition(currentPlayer);
             Console.WriteLine(currentPlayer.tokens[0].position);
         }
         private void End()
@@ -124,6 +120,14 @@ namespace Ludo
                 case Color.Green:
                     Console.ForegroundColor = ConsoleColor.Green;
                     break;
+            }
+        }
+        private void writeCurrentPosition(Player currentPlayer)
+        {
+            Console.WriteLine("your tokens:");
+            for (int i = 0; i < currentPlayer.tokens.Count; i++)
+            {
+                Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", currentPlayer.tokens[i].id + 1, currentPlayer.tokens[i].position, currentPlayer.tokens[i].state));
             }
         }
     }

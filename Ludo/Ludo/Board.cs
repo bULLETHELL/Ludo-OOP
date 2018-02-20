@@ -12,6 +12,7 @@ namespace Ludo
     {
         public int[] GlobeSquares = new int[] { 1, 9, 14, 22, 27, 35, 40, 48 };
         public int[] StarSquares = new int[] { 6, 12, 19, 25, 32, 38, 45, 51 };
+        public int[] StartSquares = new int[] { 1, 14, 27, 40 };
 
         private List<Square> BoardList = new List<Square>();
         private List<Square> BoardListRed = new List<Square>();

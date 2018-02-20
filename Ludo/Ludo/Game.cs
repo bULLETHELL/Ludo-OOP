@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ludo
 {
-    class Game
+    public class Game
     {
         enum GameState { NotStarted, InProgress, Finished};
         List<Player> players1 = new List<Player>();

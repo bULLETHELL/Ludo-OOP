@@ -29,20 +29,32 @@ namespace Ludo
         }
         private void Draw()
         {
+            int j = 0;
             for (int i = 1; i <= 52; i++)
             {
-                if (GlobeSquares.Contains(i))
+
+
+                if (GlobeSquares.Contains(i) && StartSquares.Contains(i))
+                {
+                    BoardList.Add(new Square(SquareType.Globe, i, (Color)j, SquareState.empty));
+                    j++;
+                }
+
+                else if (GlobeSquares.Contains(i) && !StartSquares.Contains(i))
                 {
                     BoardList.Add(new Square(SquareType.Globe, i, Color.White, SquareState.empty));
                 }
-                else if (StarSquares.Contains(i))
+
+                else if (StarSquares.Contains(i) && !StartSquares.Contains(i))
                 {
                     BoardList.Add(new Square(SquareType.Star, i, Color.White, SquareState.empty));
                 }
-                else
+
+                else 
                 {
                     BoardList.Add(new Square(SquareType.Normal, i, Color.White, SquareState.empty));
                 }
+                
             }
             for (int i = 1; i <= 20; i++)
             {

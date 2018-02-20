@@ -8,10 +8,10 @@ namespace Ludo
 {
     public enum Color //    Enumeration for the Color of the Token
     {
-        Red,
         Yellow,
-        Blue,
+        Red,
         Green,
+        Blue,
         White,
     };
 

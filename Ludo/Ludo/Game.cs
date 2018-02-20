@@ -17,7 +17,7 @@ namespace Ludo
         {
             board = new Board();
             dice = new Dice(6);
-
+            Console.WriteLine(board.Info());
             Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
             players1 = MakePlayers(AmountOfPlayers());
             Turn();          
@@ -94,7 +94,7 @@ namespace Ludo
                     currentPlayer.tokens[2].Move(diceResult);
                     break;
                 case '4':
-                    currentPlayer.tokens[3].Move(diceResult,);
+                    currentPlayer.tokens[3].Move(diceResult);
                     break;
             }
             writeCurrentPosition(currentPlayer);

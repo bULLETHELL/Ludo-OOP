@@ -8,9 +8,11 @@ namespace Ludo
 {
     class Program
     {
+        public static Game game;
+
         static void Main(string[] args)
         {
-            Game game = new Game();
+            game = new Game();
             
         }
     }

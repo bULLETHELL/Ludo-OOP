@@ -108,6 +108,7 @@ namespace Ludo
         {
 
         }
+
         private void SetColour(Player currentPlayer)
         {
             switch (currentPlayer.color)

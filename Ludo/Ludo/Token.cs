@@ -62,19 +62,29 @@ namespace Ludo
 
         public void Move(string squares)   // Function Move from IMove
         {
+            Board board = Program.game.board;
+            List<Square> gameboardList = board.BoardList;
+
             switch (this.state)
             {
                 case TokenState.Home:
                     if (squares == "Globe" || squares == "6")
                     {
-                        this.state = TokenState.InPlay;
+                        for (int i = 0; i < gameboardList.Count; i++)
+                        {
+                            Square tempSquare = gameboardList[i];
+                            if (tempSquare.SqType == SquareType.Globe && tempSquare.SqClr == this.color)
+                            {
+                                this.state = TokenState.InPlay;
+                                gameboardList[i].SqState = SquareState.occupied;
+                                position = i;
+                            }
+                        }
                     }
                     break;
                 case TokenState.InPlay:
                     if (squares == "Globe")
                     {
-                        Board board = Program.game.board;
-                        List <Square> gameboardList = board.BoardList;
                         for (int i = 0; i < gameboardList.Count; i++)
                         {
                             int tempIndex = ((i + position + 1) % gameboardList.Count);
@@ -83,7 +93,7 @@ namespace Ludo
                             if (tempSquare.SqType == SquareType.Globe)
                             {
                                 gameboardList[tempIndex].SqState = SquareState.safe;
-                                position = tempIndex;
+                                this.position = tempIndex;
                                 break;
                             }
                         }

@@ -13,7 +13,7 @@ namespace Ludo
         public int[] GlobeSquares = new int[] { 1, 9, 14, 22, 27, 35, 40, 48 };
         public int[] StarSquares = new int[] { 6, 12, 19, 25, 32, 38, 45, 51 };
 
-        private List<Square> BoardList = new List<Square>();
+        public List<Square> BoardList = new List<Square>();
         private List<Square> BoardListRed = new List<Square>();
         private List<Square> BoardListGreen = new List<Square>();
         private List<Square> BoardListBlue = new List<Square>();
@@ -28,8 +28,6 @@ namespace Ludo
         }
         private void Draw()
         {
-            
-
             for (int i = 1; i <= 52; i++)
             {
                 if (GlobeSquares.Contains(i))

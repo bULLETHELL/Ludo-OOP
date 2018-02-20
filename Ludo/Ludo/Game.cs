@@ -15,11 +15,13 @@ namespace Ludo
 
         public Game()
         {
-            Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
-            players1 = MakePlayers(AmountOfPlayers());
             board = new Board();
             dice = new Dice(6);
+            Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
+            players1 = MakePlayers(AmountOfPlayers());
             Turn();
+            Console.WriteLine(board.Info());
+          
             Console.ReadKey();
         }
         private int AmountOfPlayers()
@@ -100,6 +102,7 @@ namespace Ludo
                     currentPlayer.tokens[3].Move(diceResult);
                     break;
             }
+            Console.WriteLine(currentPlayer.tokens[0].position);
         }
         private void End()
         {

@@ -77,6 +77,7 @@ namespace Ludo
                                 this.state = TokenState.InPlay;
                                 gameboardList[i].SqState = SquareState.occupied;
                                 this.position = tempSquare.SqId;
+                                break;
                             }
                         }
                     }
@@ -99,7 +100,18 @@ namespace Ludo
                     }
                     else if (squares == "Star")
                     {
+                        for (int i = 0; i < gameboardList.Count; i++)
+                        {
+                            int tempIndex = ((i + position + 1) % gameboardList.Count);
+                            Square tempSquare = gameboardList[tempIndex];
 
+                            if (tempSquare.SqType == SquareType.Star)
+                            {
+                                gameboardList[tempIndex].SqState = SquareState.occupied;
+                                this.position = tempIndex;
+                                break;
+                            }
+                        }
                     }
                     else
                     {

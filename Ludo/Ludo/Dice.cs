@@ -21,7 +21,8 @@ namespace Ludo
         //the function that rolls the dice
         public string Roll()
         {
-            diceValue = random.Next(1, (this.sides + 1)).ToString();
+            //diceValue = random.Next(1, (this.sides + 1)).ToString();
+            diceValue = "6";//debugterning
 
             if (diceValue == "3")
             {

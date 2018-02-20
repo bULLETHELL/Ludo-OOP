@@ -9,9 +9,10 @@ namespace Ludo
     public class Game
     {
         enum GameState { NotStarted, InProgress, Finished};
-        List<Player> players1 = new List<Player>();
+        List<Player> players = new List<Player>();
         Dice dice;
         public Board board;
+        bool gameEnded = false;
 
         public Game()
         {
@@ -19,8 +20,12 @@ namespace Ludo
             dice = new Dice(6);
             Console.WriteLine(board.Info());
             Console.WriteLine("Welcome to LudoTM by Morten and Andreas");
-            players1 = MakePlayers(AmountOfPlayers());
-            Turn();          
+            players = MakePlayers(AmountOfPlayers());
+            while (!gameEnded)
+            {
+                Turn();
+            }
+                      
             Console.ReadKey();
         }
         private int AmountOfPlayers()
@@ -69,7 +74,7 @@ namespace Ludo
         private void Turn()
         {
             string diceResult = "";
-            Player currentPlayer = players1[TurnCounter % players1.Count];
+            Player currentPlayer = players[TurnCounter % players.Count];
 
             SetColour(currentPlayer);
             Console.WriteLine(string.Format("Current player is the {0} player", currentPlayer.color));
@@ -85,20 +90,22 @@ namespace Ludo
             switch (Console.ReadKey(true).KeyChar)
             {
                 case '1':
-                    currentPlayer.tokens[0].Move(diceResult);
+                    currentPlayer.tokens[0].Move(diceResult, board);
                     break;
                 case '2':
-                    currentPlayer.tokens[1].Move(diceResult);
+                    currentPlayer.tokens[1].Move(diceResult, board);
                     break;
                 case '3':
-                    currentPlayer.tokens[2].Move(diceResult);
+                    currentPlayer.tokens[2].Move(diceResult, board);
                     break;
                 case '4':
-                    currentPlayer.tokens[3].Move(diceResult);
+                    currentPlayer.tokens[3].Move(diceResult, board);
                     break;
             }
+            TurnCounter++;
             writeCurrentPosition(currentPlayer);
             Console.WriteLine(currentPlayer.tokens[0].position);
+            Console.ForegroundColor = ConsoleColor.White;
         }
         private void End()
         {

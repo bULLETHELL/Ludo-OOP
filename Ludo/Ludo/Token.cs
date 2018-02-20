@@ -76,7 +76,7 @@ namespace Ludo
                             {
                                 this.state = TokenState.InPlay;
                                 gameboardList[i].SqState = SquareState.occupied;
-                                this.position = tempSquare.SqId;
+                                this.position = i;
                             }
                         }
                     }

@@ -8,6 +8,6 @@ namespace Ludo
 {
     public interface IMove
     {
-        void Move(int squares);
+        void Move(string squares);
     }
 }

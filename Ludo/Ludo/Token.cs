@@ -60,15 +60,29 @@ namespace Ludo
             }
         }
 
-        public void Move(int squares)   // Function Move from IMove
+        public void Move(string squares)   // Function Move from IMove
         {
             switch (this.state)
             {
                 case TokenState.Home:
-                    this.state = TokenState.InPlay;
+                    if (squares == "Globe" || squares == "6")
+                    {
+                        this.state = TokenState.InPlay;
+                    }
                     break;
                 case TokenState.InPlay:
-                    position += squares;
+                    if (squares == "Globe")
+                    {
+
+                    }
+                    else if (squares == "Star")
+                    {
+
+                    }
+                    else
+                    {
+                        position += int.Parse(squares);
+                    }
                     break;
                 case TokenState.Finished:
                     break;

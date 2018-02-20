@@ -21,8 +21,6 @@ namespace Ludo
             dice = new Dice(6);
             Turn();
             Console.ReadKey();
-            Console.WriteLine(board.Info());
-            Console.Read();
         }
         private int AmountOfPlayers()
         {
@@ -71,6 +69,9 @@ namespace Ludo
         {
             string diceResult = "";
             Player currentPlayer = players1[TurnCounter % players1.Count];
+
+            SetColour(currentPlayer);
+            Console.WriteLine(string.Format("Current player is the {0} player", currentPlayer.color));
             Console.WriteLine("you have the following tokens:");
             for (int i = 0; i < 4; i++)
             {
@@ -92,11 +93,35 @@ namespace Ludo
                 case '2':
                     currentPlayer.tokens[1].Move(diceResult);
                     break;
+                case '3':
+                    currentPlayer.tokens[2].Move(diceResult);
+                    break;
+                case '4':
+                    currentPlayer.tokens[3].Move(diceResult);
+                    break;
             }
         }
         private void End()
         {
 
+        }
+        private void SetColour(Player currentPlayer)
+        {
+            switch (currentPlayer.color)
+            {
+                case Color.Red:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case Color.Yellow:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                case Color.Blue:
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                case Color.Green:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+            }
         }
     }
 }

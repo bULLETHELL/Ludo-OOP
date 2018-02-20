@@ -76,7 +76,7 @@ namespace Ludo
                     {
                         for (int i = 0; i < game.board.BoardList.Count; i++)
                         {
-                            int tempIndex = ((i + position) % game.board.BoardList.Count);
+                            int tempIndex = ((i + position + 1) % game.board.BoardList.Count);
                             Square tempSquare = game.board.BoardList[tempIndex];
 
                             if (tempSquare.SqType == SquareType.Globe) {

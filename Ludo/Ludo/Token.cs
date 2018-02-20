@@ -60,9 +60,8 @@ namespace Ludo
             }
         }
 
-        public void Move(string squares)   // Function Move from IMove
+        public void Move(string squares, Board board)   // Function Move from IMove
         {
-            Board board = Program.game.board;
             List<Square> gameboardList = board.BoardList;
 
             switch (this.state)

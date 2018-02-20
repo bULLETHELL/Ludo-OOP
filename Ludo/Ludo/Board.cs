@@ -8,7 +8,7 @@ namespace Ludo
 {
 
 
-    class Board
+    public class Board
     {
         public int[] GlobeSquares = new int[] { 1, 9, 14, 22, 27, 35, 40, 48 };
         public int[] StarSquares = new int[] { 6, 12, 19, 25, 32, 38, 45, 51 };

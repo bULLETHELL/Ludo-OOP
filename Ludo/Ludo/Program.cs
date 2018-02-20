@@ -12,8 +12,7 @@ namespace Ludo
 
         static void Main(string[] args)
         {
-            game = new Game();
-            
+            game = new Game();       
         }
     }
 }

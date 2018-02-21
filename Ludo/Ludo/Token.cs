@@ -85,53 +85,26 @@ namespace Ludo
                 case TokenState.InPlay:
                     if (squares == "Globe")
                     {
-                        for (int i = 0; i < gameboardList.Count; i++)
-                        {
-                            int tempIndex = ((i + position + 1) % gameboardList.Count);
-                            Square tempSquare = gameboardList[tempIndex];
-
-                            if (tempSquare.SqType == SquareType.Globe)
-                            {
-                                gameboardList[tempIndex].SqState = SquareState.safe;
-                                this.position = gameboardList[tempIndex].SqId;
-                                break;
-                            }
-                        }
+                        this.position = board.GetPosOfNextOfType(SquareType.Globe, this.position + 1);
                     }
                     else if (squares == "Star")
                     {
-                        for (int i = 0; i < gameboardList.Count; i++)
-                        {
-                            int tempIndex = ((i + position + 1) % gameboardList.Count);
-                            Square tempSquare = gameboardList[tempIndex];
-
-                            if (tempSquare.SqType == SquareType.Star)
-                            {
-                                gameboardList[tempIndex].SqState = SquareState.occupied;
-                                this.position = gameboardList[tempIndex].SqId;
-                                break;
-                            }
-                        }
+                        this.position = board.GetPosOfNextOfType(SquareType.Star, this.position + 1);
                     }
                     else
                     {
                         // TODO: Make nextSquare ignore the tempSquare star so it is the next Star Square after nextSquare
-                        // TODO: Make 
-                        int nextPos = this.position + int.Parse(squares);
+                        // TODO: Make IT BE THE NEXT STAR SQUARE AFTER THE SQUARE THE PLAYER IS CURRENTLY ON
+                        int nextPos = (this.position + int.Parse(squares)) % gameboardList.Count;
                         Square curSquare = gameboardList[this.position - 1];
                         Square tempSquare = gameboardList[nextPos - 1];
                         Square nextSquare;
                         if (tempSquare.SqType == SquareType.Star)
                         {
-                            for (int i = 0; i < gameboardList.Count; i++)
+                            position = nextPos;
+                            if (position == board.GetPosOfNextOfType(SquareType.Star, position))
                             {
-                                nextSquare = gameboardList[i];
-                                if (nextSquare.SqType == SquareType.Star && tempSquare.SqId != nextSquare.SqId && nextSquare.SqId != curSquare.SqId) // Fixed the first TODO
-                                {
-                                    this.position = nextSquare.SqId;
-                                    nextSquare.SqState = SquareState.occupied;
-                                    break;
-                                }
+                                position = board.GetPosOfNextOfType(SquareType.Star, position + 1);
                             }
                         }
                         else if (tempSquare.SqType == SquareType.Globe)
@@ -156,8 +129,9 @@ namespace Ludo
                     break;
                 case TokenState.Finished:
                     break;
-                     
+
             }
+
         }
     }
 }

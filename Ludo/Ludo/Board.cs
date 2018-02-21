@@ -100,5 +100,29 @@ namespace Ludo
             }
             return finalString;
         }
+
+        /// <summary>
+        /// Method that returns the next position(not index) of SquareType from (including) given position.
+        /// </summary>
+        /// <param name="type">Type of square to scan for.</param>
+        /// <param name="position">Position to scan from</param>
+        /// <returns></returns>
+        public int GetPosOfNextOfType(SquareType type, int position)
+        {
+            List<Square> gameboardList = this.BoardList;
+            for (int i = 0; i < gameboardList.Count; i++)
+            {
+                int tempIndex = ((i + position - 1) % gameboardList.Count);
+                Console.WriteLine(tempIndex);
+                Square tempSquare = gameboardList[tempIndex];
+
+                if (tempSquare.SqType == type)
+                {
+                    gameboardList[tempIndex].SqState = SquareState.occupied;
+                    return gameboardList[tempIndex].SqId;
+                }
+            }
+            return -1;
+        }
     }
 }

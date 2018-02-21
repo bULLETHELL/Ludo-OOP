@@ -88,7 +88,7 @@ namespace Ludo
                         for (int i = 0; i < gameboardList.Count; i++)
                         {
                             int tempIndex = ((i + position + 1) % gameboardList.Count);
-                            Square tempSquare = gameboardList[tempIndex];
+                            Square tempSquare = gameboardList[tempIndex + 1];
 
                             if (tempSquare.SqType == SquareType.Globe)
                             {
@@ -103,7 +103,7 @@ namespace Ludo
                         for (int i = 0; i < gameboardList.Count; i++)
                         {
                             int tempIndex = ((i + position + 1) % gameboardList.Count);
-                            Square tempSquare = gameboardList[tempIndex];
+                            Square tempSquare = gameboardList[tempIndex + 1];
 
                             if (tempSquare.SqType == SquareType.Star)
                             {
@@ -124,6 +124,20 @@ namespace Ludo
                             {
                                 nextSquare = gameboardList[i];
                                 if (nextSquare.SqType == SquareType.Star)
+                                {
+                                    this.position = nextSquare.SqId;
+                                    nextSquare.SqState = SquareState.occupied;
+                                    nextSquare.
+                                    break;
+                                }
+                            }
+                        }
+                        else if (tempSquare.SqType == SquareType.Globe)
+                        {
+                            for (int i = 0; i < gameboardList.Count; i++)
+                            {
+                                nextSquare = gameboardList[i];
+                                if (nextSquare.SqType == SquareType.Globe && nextSquare.SqState == SquareState.empty)
                                 {
                                     this.position = nextSquare.SqId;
                                     nextSquare.SqState = SquareState.occupied;

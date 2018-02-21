@@ -153,7 +153,7 @@ namespace Ludo
             Console.WriteLine("your tokens:");
             for (int i = 0; i < currentPlayer.tokens.Count; i++)
             {
-                Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", currentPlayer.tokens[i].id + 1, currentPlayer.tokens[i].position, currentPlayer.tokens[i].state));
+                Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", currentPlayer.tokens[i].Id + 1, currentPlayer.tokens[i].Position, currentPlayer.tokens[i].state));
             }
         }
     }

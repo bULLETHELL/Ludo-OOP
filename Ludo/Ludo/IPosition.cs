@@ -8,7 +8,7 @@ namespace Ludo
 {
     interface IPosition
     {
-        int position
+        int Position
         {
             get;
             set;

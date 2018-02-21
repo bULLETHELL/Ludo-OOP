@@ -39,7 +39,7 @@ namespace Ludo
         }
 
 
-        public int position //  Getter and setter for position from IPosition
+        public int Position //  Getter and setter for position from IPosition
         {
             get
             {
@@ -52,7 +52,7 @@ namespace Ludo
             }
         }
 
-        public int id
+        public int Id
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Ludo
                             {
                                 this.state = TokenState.InPlay;
                                 gameboardList[i].SqState = SquareState.occupied;
-                                this.position = tempSquare.SqId;
+                                this.Position = tempSquare.SqId;
                                 break;
                             }
                         }
@@ -85,34 +85,29 @@ namespace Ludo
                 case TokenState.InPlay:
                     if (squares == "Globe")
                     {
-                        this.position = board.GetPosOfNextOfType(SquareType.Globe, this.position + 1);
+                        this.Position = board.GetPosOfNextOfType(SquareType.Globe, this.Position + 1);
                     }
                     else if (squares == "Star")
                     {
-                        this.position = board.GetPosOfNextOfType(SquareType.Star, this.position + 1);
+                        this.Position = board.GetPosOfNextOfType(SquareType.Star, this.Position + 1);
                     }
                     else
                     {
-                        // TODO: Make nextSquare ignore the tempSquare star so it is the next Star Square after nextSquare
-                        // TODO: Make IT BE THE NEXT STAR SQUARE AFTER THE SQUARE THE PLAYER IS CURRENTLY ON
-                        int nextPos = (this.position + int.Parse(squares)) % gameboardList.Count;
-                        Square tempSquare = gameboardList[nextPos - 1];
-                        if (tempSquare.SqType == SquareType.Star)
+                        int nextPos = (this.Position + int.Parse(squares)) % gameboardList.Count + 1;
+                        Square nextSquare = gameboardList[nextPos - 1];
+                        this.Position = nextPos;
+                        if (nextSquare.SqType == SquareType.Star)
                         {
-                            this.position = nextPos;
-                            if (this.position == board.GetPosOfNextOfType(SquareType.Star, this.position))
-                            {
-                                this.position = board.GetPosOfNextOfType(SquareType.Star, this.position + 1);
-                            }
+                            this.Position = board.GetPosOfNextOfType(SquareType.Star, this.Position + 1);
                         }
-                        else if (tempSquare.SqType == SquareType.Globe)
+                        else if (nextSquare.SqType == SquareType.Globe)
                         {
-                            this.position = board.GetPosOfNextOfType(SquareType.Globe, this.position + 1);
+                            this.Position = nextSquare.SqId;
                         }
                         else
                         {
                             int.TryParse(squares, out nextPos);
-                            position += nextPos;
+                            Position += nextPos;
                         }
                     }
                     break;

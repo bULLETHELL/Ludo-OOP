@@ -146,7 +146,7 @@ namespace Ludo
             Console.WriteLine("your tokens:");
             foreach(Token tk in currentPlayer.tokens)
             {
-                Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", tk.id + 1, tk.position, tk.state));
+                Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", tk.Id + 1, tk.Position, tk.state));
             }
         }
         private int TokeInPlay(Player currentPlayer)

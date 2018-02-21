@@ -88,12 +88,12 @@ namespace Ludo
                         for (int i = 0; i < gameboardList.Count; i++)
                         {
                             int tempIndex = ((i + position + 1) % gameboardList.Count);
-                            Square tempSquare = gameboardList[tempIndex + 1];
+                            Square tempSquare = gameboardList[tempIndex];
 
                             if (tempSquare.SqType == SquareType.Globe)
                             {
                                 gameboardList[tempIndex].SqState = SquareState.safe;
-                                this.position = tempIndex;
+                                this.position = gameboardList[tempIndex].SqId;
                                 break;
                             }
                         }
@@ -103,12 +103,12 @@ namespace Ludo
                         for (int i = 0; i < gameboardList.Count; i++)
                         {
                             int tempIndex = ((i + position + 1) % gameboardList.Count);
-                            Square tempSquare = gameboardList[tempIndex + 1];
+                            Square tempSquare = gameboardList[tempIndex];
 
                             if (tempSquare.SqType == SquareType.Star)
                             {
                                 gameboardList[tempIndex].SqState = SquareState.occupied;
-                                this.position = tempIndex;
+                                this.position = gameboardList[tempIndex].SqId;
                                 break;
                             }
                         }

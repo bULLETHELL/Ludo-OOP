@@ -83,7 +83,7 @@ namespace Ludo
 
             do
             {
-                TokeInPlay(currentPlayer);
+                //TokensInPlay(currentPlayer);
                 Console.WriteLine("Press 'e' to throw the dice");
                 char chrInput = Console.ReadKey(true).KeyChar;
                 if (chrInput == 'e')
@@ -110,7 +110,7 @@ namespace Ludo
                 throwCounter++;
                 if (diceResult == "6" || diceResult == "Globe")
                 {
-                    throwCounter++;
+                    throwCounter = 0;
                 }
                 writeCurrentPosition(currentPlayer);
             }
@@ -149,7 +149,7 @@ namespace Ludo
                 Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", tk.Id + 1, tk.Position, tk.state));
             }
         }
-        private int TokeInPlay(Player currentPlayer)
+        /*private int TokensInPlay(Player currentPlayer)
         {
             int tokensInPlay = 0;
             foreach (Token tk in currentPlayer.tokens)
@@ -160,6 +160,6 @@ namespace Ludo
                 }
             }
             return (tokensInPlay);
-        }
+        }*/
     }
 }

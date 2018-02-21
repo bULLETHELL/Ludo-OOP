@@ -146,7 +146,8 @@ namespace Ludo
                         }
                         else
                         {
-                            this.position += int.Parse(squares);
+                            int.TryParse(squares, out nextPos);
+                            position += nextPos;
                         }
                     }
                     break;

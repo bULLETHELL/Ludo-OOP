@@ -96,29 +96,18 @@ namespace Ludo
                         // TODO: Make nextSquare ignore the tempSquare star so it is the next Star Square after nextSquare
                         // TODO: Make IT BE THE NEXT STAR SQUARE AFTER THE SQUARE THE PLAYER IS CURRENTLY ON
                         int nextPos = (this.position + int.Parse(squares)) % gameboardList.Count;
-                        Square curSquare = gameboardList[this.position - 1];
                         Square tempSquare = gameboardList[nextPos - 1];
-                        Square nextSquare;
                         if (tempSquare.SqType == SquareType.Star)
                         {
-                            position = nextPos;
-                            if (position == board.GetPosOfNextOfType(SquareType.Star, position))
+                            this.position = nextPos;
+                            if (this.position == board.GetPosOfNextOfType(SquareType.Star, this.position))
                             {
-                                position = board.GetPosOfNextOfType(SquareType.Star, position + 1);
+                                this.position = board.GetPosOfNextOfType(SquareType.Star, this.position + 1);
                             }
                         }
                         else if (tempSquare.SqType == SquareType.Globe)
                         {
-                            for (int i = 0; i < gameboardList.Count; i++)
-                            {
-                                nextSquare = gameboardList[i];
-                                if (nextSquare.SqType == SquareType.Globe && nextSquare.SqState == SquareState.empty)
-                                {
-                                    this.position = nextSquare.SqId;
-                                    nextSquare.SqState = SquareState.occupied;
-                                    break;
-                                }
-                            }
+                            this.position = board.GetPosOfNextOfType(SquareType.Globe, this.position + 1);
                         }
                         else
                         {

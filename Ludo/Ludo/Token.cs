@@ -127,7 +127,6 @@ namespace Ludo
                                 {
                                     this.position = nextSquare.SqId;
                                     nextSquare.SqState = SquareState.occupied;
-                                    nextSquare.
                                     break;
                                 }
                             }

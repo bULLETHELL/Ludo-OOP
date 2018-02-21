@@ -117,6 +117,7 @@ namespace Ludo
                 throwCounter++;
                 if (diceResult == "6" || diceResult == "Globe")
                 {
+
                     throwCounter--;
                 }
             }

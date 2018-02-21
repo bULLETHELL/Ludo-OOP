@@ -98,7 +98,10 @@ namespace Ludo
                         if (nextSquare.SqType == SquareType.Star)
                         {
                             this.Position = nextPos;
-                            this.Position = board.GetPosOfNextOfType(SquareType.Star, this.Position + 1);
+                            if (this.Position == board.GetPosOfNextOfType(SquareType.Star, this.Position))
+                            {
+                                this.Position = board.GetPosOfNextOfType(SquareType.Star, this.Position + 1);
+                            }
                         }
                         else if (nextSquare.SqType == SquareType.Globe)
                         {

@@ -116,7 +116,7 @@ namespace Ludo
                     else
                     {
                         int nextPos = this.position + int.Parse(squares);
-                        Square tempSquare = gameboardList[nextPos + 1];
+                        Square tempSquare = gameboardList[nextPos - 1];
                         Square nextSquare;
                         if (tempSquare.SqType == SquareType.Star)
                         {

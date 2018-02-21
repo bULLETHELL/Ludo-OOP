@@ -15,6 +15,7 @@ namespace Ludo
         public SquareType SqType;
         public Color SqClr;
         public SquareState SqState;
+        public List<Token> occupiedBy;
 
         public Square(SquareType Type, int id, Color clr, SquareState State)   
         {
@@ -22,6 +23,7 @@ namespace Ludo
             this.SqType = Type;
             this.SqId = id;
             this.SqClr = clr;
+            this.occupiedBy = new List<Token>();
         }
         public string Info()
         {

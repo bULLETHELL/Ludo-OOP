@@ -117,14 +117,12 @@ namespace Ludo
                 throwCounter++;
                 if (diceResult == "6" || diceResult == "Globe")
                 {
-
                     throwCounter--;
                 }
             }
             while (tokensInPlay < 1 && throwCounter < 3 && diceResult != "Globe" && diceResult != "6" || tokensInPlay <= 1 && throwCounter < 1);
             TurnCounter++;
             writeCurrentPosition(currentPlayer);
-            Console.WriteLine(currentPlayer.tokens[0].position);
             Console.ForegroundColor = ConsoleColor.White;
         }
         private void End()

@@ -93,11 +93,11 @@ namespace Ludo
                     }
                     else
                     {
-                        int nextPos = (this.Position + int.Parse(squares)) % gameboardList.Count + 1;
+                        int nextPos = (this.Position + int.Parse(squares)) % gameboardList.Count;
                         Square nextSquare = gameboardList[nextPos - 1];
-                        this.Position = nextPos;
                         if (nextSquare.SqType == SquareType.Star)
                         {
+                            this.Position = nextPos;
                             this.Position = board.GetPosOfNextOfType(SquareType.Star, this.Position + 1);
                         }
                         else if (nextSquare.SqType == SquareType.Globe)

@@ -73,35 +73,54 @@ namespace Ludo
 
         private void Turn()
         {
+            int throwCounter = 0;
             string diceResult = "";
+            int tokensInPlay = 0;
             Player currentPlayer = players[TurnCounter % players.Count];
 
             SetColour(currentPlayer);
             Console.WriteLine(string.Format("Current player is the {0} player", currentPlayer.color));
             writeCurrentPosition(currentPlayer);
-            Console.WriteLine("Press 'e' to throw the dice");
-            char chrInput = Console.ReadKey(true).KeyChar;
-            if (chrInput == 'e')
+            do
             {
-                diceResult = dice.Roll();
+                tokensInPlay = 0;
+                foreach (Token tk in currentPlayer.tokens)
+                {
+                    if (tk.state == TokenState.InPlay)
+                    {
+                        tokensInPlay++;
+                    }
+                }
+                Console.WriteLine("Press 'e' to throw the dice");
+                char chrInput = Console.ReadKey(true).KeyChar;
+                if (chrInput == 'e')
+                {
+                    diceResult = dice.Roll();
+                }
+                Console.WriteLine(string.Format("you rolled a '{0}' ", diceResult));
+                Console.WriteLine("Which token would you like to move(use the 1, 2, 3 or 4 key)");
+                switch (Console.ReadKey(true).KeyChar)
+                {
+                    case '1':
+                        currentPlayer.tokens[0].Move(diceResult, board);
+                        break;
+                    case '2':
+                        currentPlayer.tokens[1].Move(diceResult, board);
+                        break;
+                    case '3':
+                        currentPlayer.tokens[2].Move(diceResult, board);
+                        break;
+                    case '4':
+                        currentPlayer.tokens[3].Move(diceResult, board);
+                        break;
+                }
+                throwCounter++;
+                if (diceResult == "6" || diceResult == "Globe")
+                {
+                    throwCounter--;
+                }
             }
-            Console.WriteLine(string.Format("you rolled a '{0}' ", diceResult));
-            Console.WriteLine("Which token would you like to move(use the 1, 2, 3 or 4 key)");
-            switch (Console.ReadKey(true).KeyChar)
-            {
-                case '1':
-                    currentPlayer.tokens[0].Move(diceResult, board);
-                    break;
-                case '2':
-                    currentPlayer.tokens[1].Move(diceResult, board);
-                    break;
-                case '3':
-                    currentPlayer.tokens[2].Move(diceResult, board);
-                    break;
-                case '4':
-                    currentPlayer.tokens[3].Move(diceResult, board);
-                    break;
-            }
+            while (tokensInPlay < 1 && throwCounter < 3 && diceResult != "Globe" && diceResult != "6" || tokensInPlay <= 1 && throwCounter < 1);
             TurnCounter++;
             writeCurrentPosition(currentPlayer);
             Console.WriteLine(currentPlayer.tokens[0].position);

@@ -115,7 +115,10 @@ namespace Ludo
                     }
                     else
                     {
+                        // TODO: Make nextSquare ignore the tempSquare star so it is the next Star Square after nextSquare
+                        // TODO: Make 
                         int nextPos = this.position + int.Parse(squares);
+                        Square curSquare = gameboardList[this.position - 1];
                         Square tempSquare = gameboardList[nextPos - 1];
                         Square nextSquare;
                         if (tempSquare.SqType == SquareType.Star)
@@ -123,7 +126,7 @@ namespace Ludo
                             for (int i = 0; i < gameboardList.Count; i++)
                             {
                                 nextSquare = gameboardList[i];
-                                if (nextSquare.SqType == SquareType.Star)
+                                if (nextSquare.SqType == SquareType.Star && tempSquare.SqId != nextSquare.SqId && nextSquare.SqId != curSquare.SqId) // Fixed the first TODO
                                 {
                                     this.position = nextSquare.SqId;
                                     nextSquare.SqState = SquareState.occupied;

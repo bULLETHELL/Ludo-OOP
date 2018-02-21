@@ -115,7 +115,26 @@ namespace Ludo
                     }
                     else
                     {
-                        position += int.Parse(squares);
+                        int nextPos = this.position + int.Parse(squares);
+                        Square tempSquare = gameboardList[nextPos + 1];
+                        Square nextSquare;
+                        if (tempSquare.SqType == SquareType.Star)
+                        {
+                            for (int i = 0; i < gameboardList.Count; i++)
+                            {
+                                nextSquare = gameboardList[i];
+                                if (nextSquare.SqType == SquareType.Star)
+                                {
+                                    this.position = nextSquare.SqId;
+                                    nextSquare.SqState = SquareState.occupied;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.position += int.Parse(squares);
+                        }
                     }
                     break;
                 case TokenState.Finished:

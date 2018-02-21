@@ -22,7 +22,7 @@ namespace Ludo
         public string Roll()
         {
             diceValue = random.Next(1, (this.sides + 1)).ToString();
-            //diceValue = "6";debugterning
+            //diceValue = "Globe";debugterning
 
             if (diceValue == "3")
             {

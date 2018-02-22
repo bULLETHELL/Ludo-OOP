@@ -113,7 +113,6 @@ namespace Ludo
             for (int i = 0; i < gameboardList.Count; i++)
             {
                 int tempIndex = ((i + position - 1) % gameboardList.Count);
-                Console.WriteLine(tempIndex);
                 Square tempSquare = gameboardList[tempIndex];
 
                 if (tempSquare.SqType == type)

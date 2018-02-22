@@ -31,13 +31,40 @@ namespace Ludo
 
         }
 
+        public void AddTokenToSquare(Token tokenToAdd)
+        {
+            if (!this.occupiedBy.Contains(tokenToAdd))
+            {
+                this.occupiedBy.Add(tokenToAdd);
+            }
+        }
+
+        public void RemoveTokenFromSquare(Token tokenToRemove)
+        {
+            if (this.occupiedBy.Contains(tokenToRemove))
+            {
+                this.occupiedBy.Remove(tokenToRemove);
+            }
+        }
 
         //TODO: Get this to work
-        public void DetermineIfTokenShouldBeSendHome(Token token)
+        public void DetermineifTokenShouldBeSendHomeTokenOnSquare(Token tokenToSendHome)
         {
-            if (this.SqState == SquareState.Safe)
+            bool allTokensOnSquareEqualColor = this.occupiedBy.All(token => token.color.Equals(tokenToSendHome.color));
+
+            if (this.SqState == SquareState.Safe && !allTokensOnSquareEqualColor)
             {
-                token.SendHome(token);
+                tokenToSendHome.SendHome(tokenToSendHome);
+                RemoveTokenFromSquare(tokenToSendHome);
+                //  Debug cw
+                Console.WriteLine(String.Format("You send home token {0} of color {1} on Square {2}", tokenToSendHome.Id, tokenToSendHome.color, this.SqId));
+
+            }
+            else if (this.SqState == SquareState.Occupied && !allTokensOnSquareEqualColor)
+            {
+                Console.WriteLine(String.Format("You send home token {0} of color {1} on Square {2}", this.occupiedBy[0].Id, this.occupiedBy[0].color, this.SqId));
+                tokenToSendHome.SendHome(this.occupiedBy[0]);
+                RemoveTokenFromSquare(this.occupiedBy[0]);
             }
         }
 

@@ -147,7 +147,18 @@ namespace Ludo
             Console.WriteLine("your tokens:");
             foreach(Token tk in currentPlayer.tokens)
             {
+                Square square = board.BoardList[tk.Position];
                 Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", tk.Id + 1, tk.Position, tk.state));
+                /*Console.WriteLine(string.Format(@"   token {0}'s square has the following properties, Id {1}, colour {2}, type {3} state{4}\n", tk.Id+1, 
+                    square.SqId, 
+                    square.SqClr,
+                    square.SqType,
+                    square.SqState));*/
+                IEnumerable<Square> query = board.BoardList.Where(Square => Square.SqId == tk.Position);
+                foreach(Square value in query)
+                {
+                    Console.WriteLine(string.Format("id:{0}, Colour:{1}, State:{2}, Type:{3}",value.SqId, value.SqClr, value.SqState, value.SqType));
+                }
             }
         }
         private int TokensInPlay(Player currentPlayer)

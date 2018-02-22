@@ -74,6 +74,16 @@ namespace Ludo
         }
 
         /// <summary>
+        /// Function which should be called when you want to send home a Token.
+        /// </summary>
+        /// <param name="tokenToSendHome">The Token that you want to send home</param>
+        public void SendHome(Token tokenToSendHome)
+        {
+            tokenToSendHome.Position = 0;
+            tokenToSendHome.state = TokenState.Home;
+        }
+
+        /// <summary>
         /// Function to Move Tokens all over the board.
         /// </summary>
         /// <param name="squares">Number of squares to move the Token</param>
@@ -92,8 +102,17 @@ namespace Ludo
                             Square tempSquare = gameboardList[i];
                             if (tempSquare.SqType == SquareType.Globe && tempSquare.SqClr == this.color)
                             {
+                                if (tempSquare.occupiedBy.Count > 0)
+                                {
+                                    List<Token> tokensNotTheSameColorAsGlobe = tempSquare.occupiedBy.Where(token => token.color != this.color).ToList<Token>();
+                                    foreach (Token token in tokensNotTheSameColorAsGlobe)
+                                    {
+                                        SendHome(token);
+                                    }
+                                }
+                                tempSquare.occupiedBy.Add(this);
+                                tempSquare.SqState = tempSquare.FindOutWhatStateCurrentSquareShouldBe(this);
                                 this.state = TokenState.InPlay;
-                                gameboardList[i].SqState = SquareState.occupied;
                                 this.Position = tempSquare.SqId;
                                 break;
                             }
@@ -119,16 +138,22 @@ namespace Ludo
                             if (this.Position == board.GetPosOfNextOfType(SquareType.Star, this.Position))
                             {
                                 this.Position = board.GetPosOfNextOfType(SquareType.Star, this.Position + 1);
+                                nextSquare.SqState = nextSquare.FindOutWhatStateCurrentSquareShouldBe(this);
                             }
                         }
                         else if (nextSquare.SqType == SquareType.Globe)
                         {
-                            this.Position = nextSquare.SqId;
+                            
+                            nextSquare.occupiedBy.Add(this);    //  Add to the Squares list of Tokens that currently occupy the Square
+                            nextSquare.SqState = nextSquare.FindOutWhatStateCurrentSquareShouldBe(this);    //  Find out the state of the Square
+                            this.Position = nextSquare.SqId;    //  Set the position of Token to the Square's id
                         }
                         else
                         {
+                            nextSquare.occupiedBy.Add(this);    //  Add to the Squares list of Tokens that currently occupy the Square
+                            nextSquare.SqState = nextSquare.FindOutWhatStateCurrentSquareShouldBe(this);    //  Find out the state of the Square
                             int.TryParse(squares, out nextPos);
-                            Position += nextPos;
+                            Position += nextPos;    //  Set the position of Token to the Square's id               
                         }
                     }
                     break;

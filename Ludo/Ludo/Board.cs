@@ -34,23 +34,23 @@ namespace Ludo
             {
                 if (GlobeSquares.Contains(i) && StartSquares.Contains(i))
                 {
-                    BoardList.Add(new Square(SquareType.Globe, i, (Color)j, SquareState.empty));
+                    BoardList.Add(new Square(SquareType.Globe, i, (Color)j, SquareState.Empty));
                     j++;
                 }
 
                 else if (GlobeSquares.Contains(i) && !StartSquares.Contains(i))
                 {
-                    BoardList.Add(new Square(SquareType.Globe, i, Color.White, SquareState.empty));
+                    BoardList.Add(new Square(SquareType.Globe, i, Color.White, SquareState.Empty));
                 }
 
                 else if (StarSquares.Contains(i) && !StartSquares.Contains(i))
                 {
-                    BoardList.Add(new Square(SquareType.Star, i, Color.White, SquareState.empty));
+                    BoardList.Add(new Square(SquareType.Star, i, Color.White, SquareState.Empty));
                 }
 
                 else 
                 {
-                    BoardList.Add(new Square(SquareType.Normal, i, Color.White, SquareState.empty));
+                    BoardList.Add(new Square(SquareType.Normal, i, Color.White, SquareState.Empty));
                 }
                 
             }
@@ -58,22 +58,22 @@ namespace Ludo
             {
                 if (i <= 1)
                 {
-                    BoardListYellow.Add(new Square(SquareType.FinishRoad, (i+52), Color.Yellow, SquareState.empty));
+                    BoardListYellow.Add(new Square(SquareType.FinishRoad, (i+52), Color.Yellow, SquareState.Empty));
                 }
                 else if (i <= 10)
                 {
-                    BoardListRed.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Red, SquareState.empty));
+                    BoardListRed.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Red, SquareState.Empty));
                 }
                 else if (i <= 15)
                 {
-                    BoardListGreen.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Green, SquareState.empty));
+                    BoardListGreen.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Green, SquareState.Empty));
                 }
                 else if (i <= 20)
                 {
-                    BoardListBlue.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue, SquareState.empty));
+                    BoardListBlue.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue, SquareState.Empty));
                 }
             }
-            BoardList.Add(new Square(SquareType.Finish, 73, Color.White, SquareState.empty));
+            BoardList.Add(new Square(SquareType.Finish, 73, Color.White, SquareState.Empty));
         }
         public string Info()
         {
@@ -118,7 +118,6 @@ namespace Ludo
 
                 if (tempSquare.SqType == type)
                 {
-                    gameboardList[tempIndex].SqState = SquareState.occupied;
                     return gameboardList[tempIndex].SqId;
                 }
             }

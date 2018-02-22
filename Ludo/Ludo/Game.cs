@@ -74,7 +74,6 @@ namespace Ludo
         {
             int throwCounter = 0;
             string diceResult = "";
-            int tokensInPlay = 0;
             Player currentPlayer = players[TurnCounter % players.Count];
 
             SetColour(currentPlayer);
@@ -83,7 +82,6 @@ namespace Ludo
 
             do
             {
-                //TokensInPlay(currentPlayer);
                 Console.WriteLine("Press 'e' to throw the dice");
                 char chrInput = Console.ReadKey(true).KeyChar;
                 if (chrInput == 'e')
@@ -110,11 +108,14 @@ namespace Ludo
                 throwCounter++;
                 if (diceResult == "6" || diceResult == "Globe")
                 {
-                    //throwCounter = 0;
+                    throwCounter--;
+                    diceResult = "";
                 }
                 writeCurrentPosition(currentPlayer);
+
             }
-            while (tokensInPlay < 1 && throwCounter < 3 && diceResult != "Globe" && diceResult != "6" || tokensInPlay <= 1 && throwCounter < 1);
+            while (TokensInPlay(currentPlayer) < 1  && diceResult != "Globe" && diceResult != "6" && throwCounter < 3 || diceResult != "Globe" && diceResult != "6" && throwCounter < 1);
+
             TurnCounter++;
             Console.ForegroundColor = ConsoleColor.White;
         }
@@ -149,7 +150,7 @@ namespace Ludo
                 Console.WriteLine(string.Format("   token: {0} with the position: {1} and state: {2} \n", tk.Id + 1, tk.Position, tk.state));
             }
         }
-        /*private int TokensInPlay(Player currentPlayer)
+        private int TokensInPlay(Player currentPlayer)
         {
             int tokensInPlay = 0;
             foreach (Token tk in currentPlayer.tokens)
@@ -160,6 +161,6 @@ namespace Ludo
                 }
             }
             return (tokensInPlay);
-        }*/
+        }
     }
 }

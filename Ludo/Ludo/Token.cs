@@ -114,6 +114,7 @@ namespace Ludo
                                 }
                                 tempSquare.AddTokenToSquare(this);
                                 tempSquare.SqState = tempSquare.FindOutWhatStateCurrentSquareShouldBe(this);
+                                (this).state = TokenState.InPlay;
                                 this.Position = tempSquare.SqId;
                                 break;
                             }
@@ -128,14 +129,14 @@ namespace Ludo
                     if (squares == "Globe")
                     {
                         curSquare.RemoveTokenFromSquare(this);
-                        nextSquare.AddTokenToSquare(this);
                         this.Position = board.GetPosOfNextOfType(SquareType.Globe, this.Position + 1);
+                        nextSquare.AddTokenToSquare(this);
                     }
                     else if (squares == "Star")
                     {
                         curSquare.RemoveTokenFromSquare(this);
-                        nextSquare.AddTokenToSquare(this);
                         this.Position = board.GetPosOfNextOfType(SquareType.Star, this.Position + 1);
+                        nextSquare.AddTokenToSquare(this);
                     }
                     else
                     {   

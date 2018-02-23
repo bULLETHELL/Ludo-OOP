@@ -31,6 +31,10 @@ namespace Ludo
 
         }
 
+        /// <summary>
+        /// Add Token to square's occupiedBy List
+        /// </summary>
+        /// <param name="tokenToAdd">Token to add</param>
         public void AddTokenToSquare(Token tokenToAdd)
         {
             if (!this.occupiedBy.Contains(tokenToAdd))
@@ -39,6 +43,10 @@ namespace Ludo
             }
         }
 
+        /// <summary>
+        /// Remove Token from square's occupiedBy List
+        /// </summary>
+        /// <param name="tokenToRemove">Token to remove</param>
         public void RemoveTokenFromSquare(Token tokenToRemove)
         {
             if (this.occupiedBy.Contains(tokenToRemove))
@@ -47,7 +55,10 @@ namespace Ludo
             }
         }
 
-        //TODO: Get this to work
+        /// <summary>
+        /// Function to determine whether to send a token home on this square
+        /// </summary>
+        /// <param name="tokenToSendHome">The token to check on</param>
         public void DetermineifTokenShouldBeSendHomeTokenOnSquare(Token tokenToSendHome)
         {
             bool allTokensOnSquareEqualColor = this.occupiedBy.All(token => token.color.Equals(tokenToSendHome.color));

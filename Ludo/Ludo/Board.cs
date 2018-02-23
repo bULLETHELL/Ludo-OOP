@@ -13,6 +13,9 @@ namespace Ludo
         public int[] GlobeSquares = new int[] { 1, 9, 14, 22, 27, 35, 40, 48 };
         public int[] StarSquares = new int[] { 6, 12, 19, 25, 32, 38, 45, 51 };
         public int[] StartSquares = new int[] { 1, 14, 27, 40 };
+        public int[] FinishSquares = new int[] { 51, 17, 28, 38 };
+
+
 
         public List<Square> BoardList = new List<Square>();
         private List<Square> BoardListRed = new List<Square>();
@@ -34,23 +37,27 @@ namespace Ludo
             {
                 if (GlobeSquares.Contains(i) && StartSquares.Contains(i))
                 {
-                    BoardList.Add(new Square(SquareType.Globe, i, (Color)j, SquareState.Empty));
+                    BoardList.Add(new Square(SquareType.Globe, i, (Color)j, SquareState.empty, false));
                     j++;
+                }
+                else if (GlobeSquares.Contains(i) && FinishSquares.Contains(i))
+                {
+                    BoardList.Add(new Square(SquareType.Globe, i, (Color)j, SquareState.empty, true));
                 }
 
                 else if (GlobeSquares.Contains(i) && !StartSquares.Contains(i))
                 {
-                    BoardList.Add(new Square(SquareType.Globe, i, Color.White, SquareState.Empty));
+                    BoardList.Add(new Square(SquareType.Globe, i, Color.White, SquareState.empty, false));
                 }
 
                 else if (StarSquares.Contains(i) && !StartSquares.Contains(i))
                 {
-                    BoardList.Add(new Square(SquareType.Star, i, Color.White, SquareState.Empty));
+                    BoardList.Add(new Square(SquareType.Star, i, Color.White, SquareState.empty, false));
                 }
 
-                else 
+                else
                 {
-                    BoardList.Add(new Square(SquareType.Normal, i, Color.White, SquareState.Empty));
+                    BoardList.Add(new Square(SquareType.Normal, i, Color.White, SquareState.empty, false));
                 }
                 
             }
@@ -58,22 +65,22 @@ namespace Ludo
             {
                 if (i <= 1)
                 {
-                    BoardListYellow.Add(new Square(SquareType.FinishRoad, (i+52), Color.Yellow, SquareState.Empty));
+                    BoardListYellow.Add(new Square(SquareType.FinishRoad, (i+52), Color.Yellow, SquareState.empty, false));
                 }
                 else if (i <= 10)
                 {
-                    BoardListRed.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Red, SquareState.Empty));
+                    BoardListRed.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Red, SquareState.empty, false));
                 }
                 else if (i <= 15)
                 {
-                    BoardListGreen.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Green, SquareState.Empty));
+                    BoardListGreen.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Green, SquareState.empty, false));
                 }
                 else if (i <= 20)
                 {
-                    BoardListBlue.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue, SquareState.Empty));
+                    BoardListBlue.Add(new Square(SquareType.FinishRoad, (i + 52), Color.Blue, SquareState.empty, false));
                 }
             }
-            BoardList.Add(new Square(SquareType.Finish, 73, Color.White, SquareState.Empty));
+            BoardList.Add(new Square(SquareType.Finish, 73, Color.White, SquareState.empty, false));
         }
         public string Info()
         {
@@ -99,29 +106,6 @@ namespace Ludo
                 finalString += BlueSquare.Info();
             }
             return finalString;
-        }
-
-        /// <summary>
-        /// Method that returns the next position(not index) of SquareType from (including) given position.
-        /// </summary>
-        /// <param name="type">Type of square to scan for.</param>
-        /// <param name="position">Position to scan from</param>
-        /// <returns></returns>
-        public int GetPosOfNextOfType(SquareType type, int position)
-        {
-            List<Square> gameboardList = this.BoardList;
-            for (int i = 0; i < gameboardList.Count; i++)
-            {
-                int tempIndex = ((i + position - 1) % gameboardList.Count);
-                Console.WriteLine(tempIndex);
-                Square tempSquare = gameboardList[tempIndex];
-
-                if (tempSquare.SqType == type)
-                {
-                    return gameboardList[tempIndex].SqId;
-                }
-            }
-            return -1;
         }
     }
 }

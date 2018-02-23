@@ -75,48 +75,97 @@ namespace Ludo
             int throwCounter = 0;
             string diceResult = "";
             Player currentPlayer = players[TurnCounter % players.Count];
-
+            bool extraThrow = false;
             SetColour(currentPlayer);
             Console.WriteLine(string.Format("Current player is the {0} player", currentPlayer.color));
             writeCurrentPosition(currentPlayer);
 
-            do
+            /*&& diceResult != "Globe" && diceResult != "6" &&*/
+            /*&& diceResult != "Globe" && diceResult != "6" &&*/
+            if (TokensInPlay(currentPlayer) < 1)
             {
-                Console.WriteLine("Press 'e' to throw the dice");
-                char chrInput = Console.ReadKey(true).KeyChar;
-                if (chrInput == 'e')
+                while (TokensInPlay(currentPlayer) < 1 && throwCounter < 3) //|| diceResult != "Globe" && diceResult != "6" && throwCounter < 1)
                 {
+                    Console.WriteLine("Press any button to throw the dice");
+                    Console.ReadKey(true);
                     diceResult = dice.Roll();
+                    Console.WriteLine(string.Format("you rolled a '{0}' ", diceResult));
+                    if (diceResult == "Globe" || diceResult == "6")
+                    {
+                        Console.WriteLine("Which token would you like to move(use the 1, 2, 3 or 4 key)");
+                        switch (Console.ReadKey(true).KeyChar)
+                        {
+                            case '1':
+                                currentPlayer.tokens[0].Move(diceResult, board);
+                                break;
+                            case '2':
+                                currentPlayer.tokens[1].Move(diceResult, board);
+                                break;
+                            case '3':
+                                currentPlayer.tokens[2].Move(diceResult, board);
+                                break;
+                            case '4':
+                                currentPlayer.tokens[3].Move(diceResult, board);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("no possible moves, throw again");
+                    }
+                    
+                    throwCounter++;
+                    if(diceResult == "Globe" || diceResult == "6")
+                    {
+                        writeCurrentPosition(currentPlayer);
+                    }                   
                 }
-                Console.WriteLine(string.Format("you rolled a '{0}' ", diceResult));
-                Console.WriteLine("Which token would you like to move(use the 1, 2, 3 or 4 key)");
-                switch (Console.ReadKey(true).KeyChar)
-                {
-                    case '1':
-                        currentPlayer.tokens[0].Move(diceResult, board);
-                        break;
-                    case '2':
-                        currentPlayer.tokens[1].Move(diceResult, board);
-                        break;
-                    case '3':
-                        currentPlayer.tokens[2].Move(diceResult, board);
-                        break;
-                    case '4':
-                        currentPlayer.tokens[3].Move(diceResult, board);
-                        break;
-                }
-                throwCounter++;
-                if (diceResult == "6" || diceResult == "Globe")
-                {
-                    throwCounter--;
-                    diceResult = "";
-                }
-                writeCurrentPosition(currentPlayer);
-
             }
-            while (TokensInPlay(currentPlayer) < 1  && diceResult != "Globe" && diceResult != "6" && throwCounter < 3 || diceResult != "Globe" && diceResult != "6" && throwCounter < 1);
+            else if (TokensInPlay(currentPlayer) >=1)
+            {
+                while(throwCounter < 1)
+                {
+                    Console.WriteLine("Press any button to throw the dice");
+                    Console.ReadKey(true);
+                    diceResult = dice.Roll();
+                    Console.WriteLine(string.Format("you rolled a '{0}' ", diceResult));
+                    Console.WriteLine("Which token would you like to move(use the 1, 2, 3 or 4 key)");
+                    
+                    switch (Console.ReadKey(true).KeyChar)
+                    {
+                        case '1':
+                            currentPlayer.tokens[0].Move(diceResult, board);
+                            break;
+                        case '2':
+                            currentPlayer.tokens[1].Move(diceResult, board);
+                            break;
+                        case '3':
+                            currentPlayer.tokens[2].Move(diceResult, board);
+                            break;
+                        case '4':
+                            currentPlayer.tokens[3].Move(diceResult, board);
+                            break;
+                    }
+                    if(diceResult == "Globe" || diceResult == "6")
+                    {
+                        extraThrow = true;
+                    }
+                    switch (extraThrow)
+                    {
+                        case true:
+                            throwCounter = 0;
+                            break;
+                        case false:
+                            throwCounter++;
+                            break;
+                    }
+                    writeCurrentPosition(currentPlayer);
+                }
+            }
 
             TurnCounter++;
+            Console.WriteLine("press a key to end your turn");
+            Console.ReadKey(true);
             Console.ForegroundColor = ConsoleColor.White;
         }
         private void End()
@@ -157,21 +206,33 @@ namespace Ludo
                 IEnumerable<Square> query = board.BoardList.Where(Square => Square.SqId == tk.Position);
                 foreach(Square value in query)
                 {
-                    Console.WriteLine(string.Format("id:{0}, Colour:{1}, State:{2}, Type:{3}",value.SqId, value.SqClr, value.SqState, value.SqType));
+                    Console.WriteLine(string.Format("   id:{0}, Colour:{1}, State:{2}, Type:{3}",value.SqId, value.SqClr, value.SqState, value.SqType));
                 }
             }
         }
         private int TokensInPlay(Player currentPlayer)
         {
-            int tokensInPlay = 0;
-            foreach (Token tk in currentPlayer.tokens)
+            IEnumerable<Token> query = currentPlayer.tokens.Where(Token => Token.state == TokenState.InPlay);
+            return (query.Count());
+        }
+
+        private void CheckIfAtFinishRoad(Player cp, string dr)
+        {
+            int squaresFromFinishRoad;
+            int SquaresIntoFinishRoad;
+
+            IEnumerable<Token> query = cp.tokens.Where(Token => Token.state == TokenState.InPlay);
+            foreach (Token tk in query)
             {
-                if (tk.state == TokenState.InPlay)
+                Console.WriteLine("dick 0");
+                IEnumerable<Square> FinishSquare = board.BoardList.Where(Square =>  Square. == true &&  board.BoardList[tk.Position].SqClr == tk.color);
+                foreach (Square value in FinishSquare)
                 {
-                    tokensInPlay++;
+                    squaresFromFinishRoad = (tk.Position - value.SqId);
+                    Console.WriteLine(squaresFromFinishRoad + "dick 1" + FinishSquare.Count() + "dick ");
                 }
+                //squaresFromFinishRoad += (FinishSquare
             }
-            return (tokensInPlay);
         }
     }
 }
